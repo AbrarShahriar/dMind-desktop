@@ -1,0 +1,54 @@
+{
+  "name": "dMind",
+  "version": "0.0.1-beta",
+  "description": "A minimalistic note-taking app",
+  "main": "./out/main/index.js",
+  "author": {
+    "name": "Abrar Shahriar",
+    "email": "AbrarShahriar321@gmail.com",
+    "url": "https://github.com/AbrarShahriar"
+  },
+  "scripts": {
+    "typecheck:node": "tsc --noEmit -p tsconfig.node.json --composite false",
+    "typecheck:web": "tsc --noEmit -p tsconfig.web.json --composite false",
+    "typecheck": "npm run typecheck:node && npm run typecheck:web",
+    "start": "electron-vite preview",
+    "dev": "electron-vite dev",
+    "build": "npm run typecheck && electron-vite build",
+    "postinstall": "electron-builder install-app-deps",
+    "build:unpack": "npm run build && electron-builder --dir",
+    "build:win": "npm run build && electron-builder --win",
+    "win": "electron-builder --win",
+    "winp": "electron-builder build --win portable",
+    "build:mac": "npm run build && electron-builder --mac",
+    "build:linux": "npm run build && electron-builder --linux"
+  },
+  "dependencies": {
+    "@electron-toolkit/preload": "^3.0.0",
+    "@electron-toolkit/utils": "^3.0.0",
+    "electron-updater": "^6.1.7",
+    "fs-jetpack": "^5.1.0",
+    "highlight.js": "^11.9.0",
+    "jsstore": "^4.7.4",
+    "katex": "^0.16.10",
+    "mermaid": "^10.9.0",
+    "pushbar.js": "^1.0.0",
+    "siimple-icons": "^4.3.1",
+    "sweetalert2": "^11.10.8",
+    "tabbyjs": "^12.0.3"
+  },
+  "devDependencies": {
+    "@electron-toolkit/eslint-config-prettier": "^2.0.0",
+    "@electron-toolkit/eslint-config-ts": "^1.0.1",
+    "@electron-toolkit/tsconfig": "^1.0.1",
+    "@types/node": "^18.19.9",
+    "copyfiles": "^2.4.1",
+    "electron": "^28.2.0",
+    "electron-builder": "^24.9.1",
+    "electron-vite": "^2.0.0",
+    "prettier": "^3.2.4",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.12"
+  },
+  "license": "MIT"
+}

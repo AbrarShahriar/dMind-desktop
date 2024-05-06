@@ -1,0 +1,80 @@
+/* Tabby */
+
+[role="tablist"] {
+  border: none;
+  font-size: 14px;
+  margin-left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+[role="tab"] {
+  border: none;
+  font-size: 14px;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 2px solid var(--topbar-background);
+}
+
+[role="tab"]:hover:not([aria-selected="true"]) {
+  border: none;
+  border-bottom: 2px solid var(--topbar-background);
+  background-color: var(--left-panel-background);
+}
+
+[role="tab"][aria-selected="true"] {
+  border: none;
+  border-bottom: 2px solid var(--button-background);
+  background-color: var(--left-panel-background);
+}
+
+@media only screen and (max-width: 768px) {
+  [role="tablist"] {
+    margin-left: 10px;
+  }
+}
+
+/* TTable */
+
+.ttable {
+  width: 100%;
+  font-size: 16px;
+  /* border-collapse: collapse; */
+  border: 1px solid var(--left-panel-background);
+  text-align: center;
+}
+
+.ttable td,
+.ttable th {
+  padding: 10px;
+  border: none;
+}
+
+.ttable tr {
+  border: none;
+}
+
+.ttable tr:nth-child(odd) {
+  background-color: var(--left-panel-background);
+}
+
+.ttable tr:nth-child(even) {
+  background-color: var(---background);
+}
+
+@media only screen and (max-width: 768px) {
+  .ttable td,
+  .ttable th {
+    padding: 5px;
+    border: none;
+  }
+
+  .katex {
+    font-size: 1.1em;
+  }
+}

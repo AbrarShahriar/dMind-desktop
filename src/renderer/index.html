@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>dMind</title>
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <!-- <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:"
+    /> -->
+  </head>
+  <body>
+    <div class="container">
+      <!-- Nav Bar -->
+
+      <div
+        class="nav_body drawer_component drawer"
+        data-pushbar-id="drawer"
+        data-pushbar-direction="left"
+      >
+        <div class="actions">
+          <div class="action btn_primary btn_new_note">
+            <i class="si-file-plus"></i>
+            <span>New Note</span>
+          </div>
+        </div>
+        <div class="nav_note_list"></div>
+      </div>
+
+      <div class="left_panel">
+        <div class="actions">
+          <div class="action btn_primary btn_new_note">
+            <i class="si-file-plus"></i>
+            <span>New Note</span>
+          </div>
+        </div>
+        <div class="note_list"></div>
+      </div>
+
+      <div class="topbar_and_editor-content">
+        <div class="topbar">
+          <button class="btn_icon btn_drawer_open drawer_component" data-pushbar-target="drawer">
+            <i class="si-bars"></i>
+          </button>
+
+          <!-- Tabs -->
+          <ul data-tabs class="tabs">
+            <li>
+              <a data-tabby-default href="#editor">
+                <i class="btn_icon si-edit"></i>
+                Editor</a
+              >
+            </li>
+            <li class="btn_render">
+              <a href="#content">
+                <i class="btn_icon si-monitor"></i>
+                Preview
+              </a>
+            </li>
+          </ul>
+
+          <button class="btn_primary btn_save">
+            <i class="si-disk"></i>
+          </button>
+        </div>
+
+        <div class="editor_and_content">
+          <div id="editor" class="editor">
+            <textarea class="editor_input" autocomplete="off" autocapitalize="off"> </textarea>
+          </div>
+
+          <pre id="content" class="content"></pre>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="./src/renderer.ts"></script>
+  </body>
+</html>

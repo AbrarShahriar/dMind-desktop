@@ -1,0 +1,7 @@
+{
+  "extends": "@electron-toolkit/tsconfig/tsconfig.web.json",
+  "include": ["src/renderer/**/*.ts", "src/preload/*.d.ts", "src/renderer/src/libs/katex.autorender.js", "src/renderer/jsstore.worker.js", "src/types.ts", "src/main/file_manager.ts"],
+  "compilerOptions": {
+    "composite": true,
+  }
+}
