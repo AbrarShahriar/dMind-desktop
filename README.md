@@ -26,15 +26,6 @@
 
 <br>
 
-<div align="center">
-
-**[DEMO](#-demo) • 
-[EXAMPLES](#-examples) • 
-[INSTALLATION](#-installation) • 
-[FEATURE BOARD](#-feature-board)**
-
-</div>
-
 # ⚡️ Demo
 
 See for yourself!
