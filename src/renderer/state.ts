@@ -1,5 +1,4 @@
-import { ActionTypes } from '../types/enums'
-import { Action, AppStates } from '../types/types'
+import { AppStates, Action, ActionTypes } from '../types'
 import { autoResizeTextarea, select, updateSaveButton } from './utils'
 
 export let initialState: AppStates = {

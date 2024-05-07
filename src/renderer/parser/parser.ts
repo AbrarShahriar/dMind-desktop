@@ -1,6 +1,7 @@
-import { ttable } from '../../libs/ttable.js'
+import { ttable } from '../libs/ttable'
 import { MD_Types } from './node_types'
 import { ruleSets } from './rules'
+import katex from 'katex'
 
 export function parseMd(md: string): string {
   let html = md
@@ -100,6 +101,35 @@ export function parseMd(md: string): string {
               html = html.replace(match, template(level, parseMd(match.substring(level))))
             })
             return
+
+          case MD_Types.MATH.INLINE_MODE:
+            const matchedInlineMath = html.match(regex) || []
+
+            matchedInlineMath.forEach((match) => {
+              html = html.replace(
+                match,
+                template(
+                  katex.renderToString(match.split('$').filter((el) => el)[0], {
+                    throwOnError: false
+                  })
+                )
+              )
+            })
+
+          case MD_Types.MATH.DISPLAY_MODE:
+            const matchedDisplayMath = html.match(regex) || []
+
+            matchedDisplayMath.forEach((match) => {
+              html = html.replace(
+                match,
+                template(
+                  katex.renderToString(match.split('$$').filter((el) => el)[0], {
+                    throwOnError: false,
+                    displayMode: true
+                  })
+                )
+              )
+            })
 
           default:
             return

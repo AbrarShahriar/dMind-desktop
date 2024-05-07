@@ -1,5 +1,5 @@
-import Note from './components/Note.js'
-import { initialState } from './state.js'
+import Note from './components/Note'
+import { initialState } from './state'
 
 export const createEl = (el: string): HTMLElement => document.createElement(el)
 export function select<Type>(el: string): Type {
@@ -114,12 +114,10 @@ export const updateSaveButton = () => {
 
 export const renderRetrievedNotes = async () => {
   select<HTMLDivElement>('.note_list').innerHTML = ''
-  select<HTMLDivElement>('.nav_note_list').innerHTML = ''
 
   let results = await window.api.getNotes()
 
   results.forEach((note) => {
     select<HTMLDivElement>('.note_list').append(Note({ id: note.id, body: note.body }))
-    select<HTMLDivElement>('.nav_note_list').append(Note({ id: note.id, body: note.body }))
   })
 }

@@ -62,6 +62,20 @@ export const ruleSets = [
     }
   ],
 
+  // MATH
+  [
+    {
+      type: MD_Types.MATH.DISPLAY_MODE,
+      regex: /(?:\$\$)(?<! )(\S(.*?))(?! )(?:\$\$)/gm,
+      template: (katexString) => `<span>${katexString}</span>`
+    },
+    {
+      type: MD_Types.MATH.INLINE_MODE,
+      regex: /(?:\$)(?<! )(\S(.*?))(?! )(?:\$)/gm,
+      template: (katexString) => `<span>${katexString}</span>`
+    }
+  ],
+
   // TEXT FORMATTING
   [
     // BOLD

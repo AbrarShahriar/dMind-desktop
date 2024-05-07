@@ -1,4 +1,4 @@
-import { ComponentInputs } from '../../types/types'
+import { ComponentInputs } from '../../types'
 import { createEl } from '../utils'
 
 enum ListenerTypesForComponent {

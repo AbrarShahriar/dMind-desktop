@@ -1,22 +1,19 @@
-// import { setupDb, renderRetrievedNoteList, updateCurrentNote, insertNewNote } from './helper/db'
 import mermaid from 'mermaid'
-// import Pushbar from 'pushbar.js'
 import Tabby from 'tabbyjs'
 import hljs from 'highlight.js'
-import renderMathInElement from './libs/katex.autorender.js'
+import './libs/mathtex-script-type.mjs'
 import Swal from 'sweetalert2'
-import Theme from './helper/classes/Theme'
-import { parseMd } from './helper/parser/parser'
-import { dispatch, initialState } from './helper/state'
-import { select, selectAll, renderRetrievedNotes } from './helper/utils'
-import { ActionTypes } from './types/enums'
+import { dispatch, initialState } from './state.js'
 
 import 'highlight.js/styles/github-dark.min.css'
 import 'tabbyjs/dist/css/tabby-ui.min.css'
 import 'katex/dist/katex.min.css'
 import 'siimple-icons/siimple-icons.css'
-import '../styles/index.css'
-import { FsResponse, NOTE_RESPONSE_STATUS } from '../../types.js'
+import './styles/index.css'
+import { ActionTypes, FsResponse, NOTE_RESPONSE_STATUS } from '../types.js'
+import Theme from './classes/Theme.js'
+import { parseMd } from './parser/parser.js'
+import { renderRetrievedNotes, select, selectAll } from './utils.js'
 
 window.addEventListener('DOMContentLoaded', async () => {
   await renderRetrievedNotes()
@@ -39,10 +36,6 @@ const elements = {
 
 // Library Initialization
 mermaid.initialize({ startOnLoad: false, theme: 'dark' })
-// new Pushbar({
-//   blur: true,
-//   overlay: true
-// })
 const tabs = new Tabby('[data-tabs]')
 dispatch({
   type: ActionTypes.SetTabs,
@@ -65,13 +58,6 @@ elements.renderBtn?.addEventListener('click', async () => {
   if (elements.content) {
     elements.content.innerHTML = parseMd(initialState.editorData as string)
     hljs.highlightAll()
-    renderMathInElement(elements.content, {
-      delimiters: [
-        { left: '$$', right: '$$', display: true },
-        { left: '$', right: '$', display: false }
-      ],
-      throwOnError: false
-    })
     await mermaid.run()
   }
 })

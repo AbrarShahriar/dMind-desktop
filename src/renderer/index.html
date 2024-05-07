@@ -10,22 +10,7 @@
   </head>
   <body>
     <div class="container">
-      <!-- Nav Bar -->
-
-      <div
-        class="nav_body drawer_component drawer"
-        data-pushbar-id="drawer"
-        data-pushbar-direction="left"
-      >
-        <div class="actions">
-          <div class="action btn_primary btn_new_note">
-            <i class="si-file-plus"></i>
-            <span>New Note</span>
-          </div>
-        </div>
-        <div class="nav_note_list"></div>
-      </div>
-
+      <!-- LEFT PANEL -->
       <div class="left_panel">
         <div class="actions">
           <div class="action btn_primary btn_new_note">
@@ -38,10 +23,6 @@
 
       <div class="topbar_and_editor-content">
         <div class="topbar">
-          <button class="btn_icon btn_drawer_open drawer_component" data-pushbar-target="drawer">
-            <i class="si-bars"></i>
-          </button>
-
           <!-- Tabs -->
           <ul data-tabs class="tabs">
             <li>
@@ -73,6 +54,6 @@
       </div>
     </div>
 
-    <script type="module" src="./src/renderer.ts"></script>
+    <script type="module" src="./renderer.ts"></script>
   </body>
 </html>

@@ -1,9 +1,9 @@
 import Component from '../classes/Component.js'
-import { ActionTypes } from '../../types/enums.js'
 import { dispatch, initialState } from '../state.js'
-import { autoResizeTextarea, renderRetrievedNotes, select, truncateText } from '../utils.js'
+
 import Swal from 'sweetalert2'
-import { NOTE_RESPONSE_STATUS } from '../../../../types.js'
+import { ActionTypes, NOTE_RESPONSE_STATUS } from '../../types.js'
+import { truncateText, select, autoResizeTextarea, renderRetrievedNotes } from '../utils.js'
 
 const mdCharacters = ['#', '*', '_', '$', '%', '^', '-', '~']
 
