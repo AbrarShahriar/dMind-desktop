@@ -1,3 +1,44 @@
+<p align="center"><img src="https://raw.githubusercontent.com/AbrarShahriar/dMind-desktop/main/git_assets/mind.png"></p>
+<br>
+<br>
+<p align="center">
+  <img src="https://img.shields.io/badge/release-v0.0.1--beta-red?style=for-the-badge">&nbsp;&nbsp;
+  <img src="https://img.shields.io/badge/os-windows-lightseagreen?style=for-the-badge">&nbsp;&nbsp;
+  <img src="https://img.shields.io/badge/electron-v28.2.0+-teal?style=for-the-badge">&nbsp;&nbsp;
+  <img src="https://img.shields.io/badge/Apache-2.0-green?style=for-the-badge">&nbsp;&nbsp;
+  <img src="https://img.shields.io/badge/typescript-v5.3.3+-blue?style=for-the-badge">&nbsp;&nbsp;
+</p>
+
+<br>
+
+<table>
+<tr>
+<td align="center">
+  <strong>
+    dMind is a minimalistic, distraction-free yet feature-rich note-taking app. Use a modified and extended version of markdown to take your notes.
+    <br>
+    Are you a visual learner? dMind has built-in support for diagrams, tables and math expressions.
+  </strong>
+</td>
+</tr>
+</table>
+
+<br>
+
+# ⚡️ Introduction
+
+See for yourself!
+
+
+
+# ⚙️ Installation
+
+Download the beta version of dMind from [this link](https://github.com/AbrarShahriar/dMind-desktop/releases/tag/v0.0.1-beta)
+
+#### ⚠️ Attention
+
+dMind is currently in beta and under active development. While it offers exciting new features, please note that it may have critical bugs. We recommend creating issue requests immediately after encountering any bug. Always check the official documentation and release notes for update. Happy learning! 🚀
+
 ## Feature Board
 
 #### Major:
