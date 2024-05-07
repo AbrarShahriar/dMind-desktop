@@ -49,7 +49,7 @@ dMind is currently in beta and under active development. While it offers excitin
 
 # 🖥️ Feature Board
 
-#### Major:
+### Major:
 
 - [x] Extended Markdown parser
 - [x] Diagram
@@ -68,7 +68,7 @@ dMind is currently in beta and under active development. While it offers excitin
   - [ ] Custom Table Styles
 - [ ] Plugin page to enable\disable built-in plugins
 
-#### Minor
+### Minor
 
 - [ ] Admonition
 - [ ] In-App note links
