@@ -28,10 +28,10 @@
 
 <div align="center">
 
-**[DEMO](https://github.com/AbrarShahriar/dMind-desktop#-demo) • 
-[EXAMPLES](https://github.com/AbrarShahriar/dMind-desktop#-examples) • 
-[INSTALLATION](https://github.com/AbrarShahriar/dMind-desktop#-installation) • 
-[FEATURE BOARD](https://github.com/AbrarShahriar/dMind-desktop#-feature-board)**
+**[DEMO](#-demo) • 
+[EXAMPLES](#-examples) • 
+[INSTALLATION](#-installation) • 
+[FEATURE BOARD](#-feature-board)**
 
 </div>
 
