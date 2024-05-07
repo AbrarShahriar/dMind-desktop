@@ -3,14 +3,18 @@
 <br>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-v0.0.1--beta-yellow?style=for-the-badge">&nbsp;&nbsp;
-  <img src="https://img.shields.io/badge/os-windows-lightseagreen?style=for-the-badge">&nbsp;&nbsp;
-  <img src="https://img.shields.io/badge/electron-v28.2.0+-teal?style=for-the-badge">&nbsp;&nbsp;
-  <img src="https://img.shields.io/badge/Apache-2.0-green?style=for-the-badge">&nbsp;&nbsp;
-  <img src="https://img.shields.io/badge/typescript-v5.3.3+-blue?style=for-the-badge">&nbsp;&nbsp;
+  <img src="https://img.shields.io/badge/version-v0.0.1--beta-yellow?style=for-the-badge">&nbsp;
+  <img src="https://img.shields.io/badge/os-windows-lightseagreen?style=for-the-badge">&nbsp;
+  <img src="https://img.shields.io/badge/electron-v28.2.0+-teal?style=for-the-badge">&nbsp;
+  <img src="https://img.shields.io/badge/Apache-2.0-green?style=for-the-badge">&nbsp;
+  <img src="https://img.shields.io/badge/typescript-v5.3.3+-blue?style=for-the-badge">&nbsp;
 </p>
 
 <br>
+
+<p align="center">
+  <a href="https://sourceforge.net/projects/dmind/files/latest/download"><img alt="Download dMind-desktop" src="https://a.fsdn.com/con/app/sf-download-button" width=276 height=48 srcset="https://a.fsdn.com/con/app/sf-download-button?button_size=2x 2x"></a>
+</p>
 
 <table>
 <tr>
@@ -41,7 +45,7 @@ See for yourself!
 
 # ⚙️ Installation
 
-Download the beta version of dMind from [this link](https://github.com/AbrarShahriar/dMind-desktop/releases/tag/v0.0.1-beta)
+Download the beta version of dMind from [this link](https://github.com/AbrarShahriar/dMind-desktop/releases/tag/v0.0.1-beta) or from [SourceForge](https://sourceforge.net/projects/dmind/files/latest/download)
 
 #### ⚠️ Attention
 
