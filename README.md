@@ -28,10 +28,10 @@
 
 <div align="center">
 
-**[DEMO](https://github.com/chroline/well_app#-demo) • 
-[EXAMPLES](https://github.com/chroline/well_app#-examples) • 
-[INSTALLATION](https://github.com/chroline/well_app#-installation) • 
-[FEATURE BOARD](https://github.com/chroline/well_app#-feature-board)**
+**[DEMO](https://github.com/AbrarShahriar/dMind-desktop#-demo) • 
+[EXAMPLES](https://github.com/AbrarShahriar/dMind-desktop#-examples) • 
+[INSTALLATION](https://github.com/AbrarShahriar/dMind-desktop#-installation) • 
+[FEATURE BOARD](https://github.com/AbrarShahriar/dMind-desktop#-feature-board)**
 
 </div>
 
