@@ -1,0 +1,43 @@
+@import '../../styles/global/colors.scss';
+
+.sidebar {
+  color: $text-color;
+  height: 100vh;
+}
+
+.toggleSidebar {
+  border-bottom: 1px solid rgba(white, 0.25);
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  position: relative;
+
+  .actions {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    position: absolute;
+    // border: 2px solid red;
+    transition: opacity 300ms ease;
+  }
+
+  .opacity-0 {
+    opacity: 0;
+  }
+
+  .opacity-1 {
+    opacity: 1;
+  }
+
+  .toggleButton {
+    transition: transform 300ms ease;
+  }
+
+  .toggleButton_closed {
+    transform: translateX(25%);
+  }
+
+  .toggleButton_opened {
+    transform: translateX(500%);
+  }
+}
