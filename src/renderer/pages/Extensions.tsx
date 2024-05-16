@@ -6,7 +6,9 @@ import {
   CalculateOutlined,
   CodeOffOutlined,
   CodeOutlined,
-  ShowChartOutlined
+  ShowChartOutlined,
+  TableBarOutlined,
+  TableChartOutlined
 } from '@mui/icons-material'
 
 const extensions: IExtensionCard[] = [
@@ -28,11 +30,19 @@ const extensions: IExtensionCard[] = [
   },
   {
     title: 'highlight.js',
-    desc: 'JavaScript library syntax highlighting.',
+    desc: 'JavaScript library for syntax highlighting.',
     extOn: true,
     url: 'https://highlightjs.com/',
     topic: 'Code',
     topicIcon: <CodeOutlined />
+  },
+  {
+    title: 'TTable',
+    desc: 'A JavaScript library to convert text to beautiful tables.',
+    extOn: true,
+    url: 'n/a',
+    topic: 'table',
+    topicIcon: <TableChartOutlined />
   }
 ]
 
