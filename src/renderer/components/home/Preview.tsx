@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import styles from './Preview.module.scss'
 import { parseMd } from '../../parser/parser'
 import { useAppStore } from '../../store'
@@ -12,7 +12,7 @@ export default function Preview() {
   const editorData = useAppStore((state) => state.editorData)
 
   useEffect(() => {
-    let update = async () => {
+    const update = async () => {
       hljs.highlightAll()
       await mermaid.run()
     }

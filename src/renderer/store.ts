@@ -1,4 +1,3 @@
-import mermaid from 'mermaid'
 import { create } from 'zustand'
 
 interface IStore {

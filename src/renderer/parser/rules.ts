@@ -1,6 +1,6 @@
 import { MD_Types } from './node_types'
 
-let headerIcon: string = 'bookmark'
+const headerIcon: string = 'bookmark'
 
 export const ruleSets = [
   // HEADERS

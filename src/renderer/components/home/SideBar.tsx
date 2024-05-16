@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { Sidebar, SubMenu, Menu, MenuItem, sidebarClasses, menuClasses } from 'react-pro-sidebar'
+import { useEffect, useState } from 'react'
+import { Sidebar, SubMenu, Menu, MenuItem, sidebarClasses } from 'react-pro-sidebar'
 import styles from './SideBar.module.scss'
 import {
   Button,
@@ -72,7 +72,7 @@ export default function SideBar() {
   }
 
   const confirmDeleteNote = async () => {
-    let res = await window.api.deleteNote(deleteCandidateId)
+    const res = await window.api.deleteNote(deleteCandidateId)
 
     if (res.status == NOTE_RESPONSE_STATUS.NOTE_DELETED) {
       resetEditor()

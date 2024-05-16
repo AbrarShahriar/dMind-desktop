@@ -1,6 +1,4 @@
-import React from 'react'
 import { Tooltip as JoyTooltip } from '@mui/joy'
-import styles from './Tooltip.module.scss'
 
 interface ITooltip {
   label: string

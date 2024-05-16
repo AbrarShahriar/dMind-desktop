@@ -1,4 +1,3 @@
-import mermaid from 'mermaid'
 import { ttable } from '../libs/ttable'
 import { MD_Types } from './node_types'
 import { ruleSets } from './rules'
@@ -12,7 +11,7 @@ export function parseMd(md: string): string {
       if (typeof template === 'function') {
         switch (type) {
           case MD_Types.LIST.UL:
-            let matchedULElements = html.match(regex) || []
+            const matchedULElements = html.match(regex) || []
 
             matchedULElements.forEach((match) => {
               let listBody = ``
@@ -29,7 +28,7 @@ export function parseMd(md: string): string {
             return
 
           case MD_Types.LIST.OL:
-            let matchedOLElements = html.match(regex) || []
+            const matchedOLElements = html.match(regex) || []
 
             matchedOLElements.forEach((match) => {
               let listBody = ``
@@ -45,7 +44,7 @@ export function parseMd(md: string): string {
             return
 
           case MD_Types.BLOCK.QUOTE:
-            let matchedBlockQuote = html.match(regex) || []
+            const matchedBlockQuote = html.match(regex) || []
             matchedBlockQuote.forEach((match) => {
               let blockBody = ''
               match
@@ -60,12 +59,12 @@ export function parseMd(md: string): string {
             return
 
           case MD_Types.BLOCK.CODE:
-            let matchedCodeQuote = html.match(regex) || []
+            const matchedCodeQuote = html.match(regex) || []
             matchedCodeQuote.forEach((match) => {
               let blockBody = ''
-              let metadata = match.split('\n')
+              const metadata = match.split('\n')
 
-              let lang = metadata[0].substring(3).trim()
+              const lang = metadata[0].substring(3).trim()
 
               metadata
                 .filter((el, i) => !(i == 0 || i == match.split('\n').length - 1) && el)
@@ -83,9 +82,9 @@ export function parseMd(md: string): string {
             return
 
           case MD_Types.MEDIA.CHECKBOX:
-            let matchedCheckboxes = html.match(regex) || []
+            const matchedCheckboxes = html.match(regex) || []
             matchedCheckboxes.forEach((match) => {
-              let checked = match.substring(1, 2).trim()
+              const checked = match.substring(1, 2).trim()
 
               html = html.replace(match, template(checked && checked))
             })
@@ -95,7 +94,7 @@ export function parseMd(md: string): string {
             const matchedTabElements = html.match(regex) || []
 
             matchedTabElements.forEach((match) => {
-              let level = match.lastIndexOf('_') + 1
+              const level = match.lastIndexOf('_') + 1
 
               console.log(html)
 

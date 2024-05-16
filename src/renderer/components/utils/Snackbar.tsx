@@ -1,12 +1,4 @@
-import React from 'react'
-import {
-  Button,
-  ColorPaletteProp,
-  Snackbar as JoySnackbar,
-  SnackbarPropsVariantOverrides,
-  VariantProp
-} from '@mui/joy'
-import { Done } from '@mui/icons-material'
+import { Button, ColorPaletteProp, Snackbar as JoySnackbar, VariantProp } from '@mui/joy'
 
 interface ISnackbar {
   open: boolean
