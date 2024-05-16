@@ -24,11 +24,14 @@ import {
 import Tooltip from '../utils/Tooltip'
 import { IRetrievedNote, NOTE_RESPONSE_STATUS } from '../../../types'
 import { useAppStore } from '../../store'
+import { useNavigate } from 'react-router-dom'
 
 const sideBarBgColor = '#0c2f39'
 const mdCharacters = ['#', '*', '_', '$', '%', '^', '-', '~']
 
 export default function SideBar() {
+  const navigate = useNavigate()
+
   const [deleteCandidateId, setDeleteCandidateId] = useState('')
   const [noteDeleteModalOpen, setNoteDeleteModalOpen] = useState(false)
   const [collapsed, setCollapsed] = useState(false)
@@ -55,6 +58,8 @@ export default function SideBar() {
     setCurrentNoteId(note.id)
     setpreviouslyCreatedNoteOpened(true)
     setCurrentNoteSaved(true)
+
+    navigate('/')
   }
 
   const handleNewNoteClick = () => {
@@ -166,6 +171,7 @@ export default function SideBar() {
                 <WidgetsOutlined />
               </Tooltip>
             }
+            onClick={() => navigate('/extensions')}
           >
             Extensions
           </MenuItem>
@@ -175,6 +181,7 @@ export default function SideBar() {
                 <Settings />
               </Tooltip>
             }
+            onClick={() => navigate('/settings')}
           >
             Settings
           </MenuItem>

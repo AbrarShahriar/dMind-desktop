@@ -91,3 +91,14 @@ export interface IRetrievedNote {
   id: any
   body: string
 }
+
+// Extension UI Types
+
+export interface IExtensionCard {
+  title: string
+  desc: string
+  extOn: boolean
+  url: string
+  topic: string
+  topicIcon: JSX.Element
+}

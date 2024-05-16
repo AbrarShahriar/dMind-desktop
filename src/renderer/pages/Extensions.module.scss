@@ -1,0 +1,18 @@
+@import '../styles/global/colors.scss';
+
+.extensionsPage {
+  width: 100%;
+  padding: 40px;
+  h1 {
+    color: white;
+  }
+
+  .list {
+    width: 100%;
+    margin-top: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    justify-content: space-between;
+  }
+}

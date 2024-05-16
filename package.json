@@ -39,6 +39,7 @@
     "mermaid": "^10.9.1",
     "react-ace": "^11.0.1",
     "react-pro-sidebar": "^1.1.0",
+    "react-router-dom": "^6.23.1",
     "zustand": "^4.5.2"
   },
   "devDependencies": {

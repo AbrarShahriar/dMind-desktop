@@ -3,6 +3,15 @@ import { MD_Types } from './node_types'
 import { ruleSets } from './rules'
 import katex from 'katex'
 
+function extensionMiddleware(
+  action: 'add' | 'remove',
+  rulesArray: typeof ruleSets,
+  extensionsList
+) {
+  let newRulesArray = rulesArray.map((ruleArray) => ruleArray.filter((rule) => !rule.disabled))
+  return action == 'add' && newRulesArray
+}
+
 export function parseMd(md: string): string {
   let html = md
 
