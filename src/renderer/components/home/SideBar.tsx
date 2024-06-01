@@ -171,7 +171,7 @@ export default function SideBar() {
                 <WidgetsOutlined />
               </Tooltip>
             }
-            onClick={() => navigate('/extensions')}
+            onClick={() => navigate('extensions')}
           >
             Extensions
           </MenuItem>
@@ -181,7 +181,7 @@ export default function SideBar() {
                 <Settings />
               </Tooltip>
             }
-            onClick={() => navigate('/settings')}
+            onClick={() => navigate('settings')}
           >
             Settings
           </MenuItem>

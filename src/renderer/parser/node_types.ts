@@ -1,6 +1,7 @@
 export const MD_Types = {
   HEADER: 'header',
   TEXT_FORMATTING: {
+    INLINE_CODE: 'inline_code',
     BOLD: 'bold',
     ITALIC: 'italic',
     STRIKETHROUGH: 'strikethrough',
@@ -12,6 +13,6 @@ export const MD_Types = {
   LINK: 'LINK',
   INDENTATION: { LINE_BREAK: 'linebrake', TAB: 'tab' },
   LIST: { UL: 'list_ul', OL: 'list_ol' },
-  BLOCK: { QUOTE: 'quote', CODE: 'code' },
+  BLOCK: { QUOTE: 'quote', CODE: 'code', DIAGRAM: 'diagram', TABLE: 'table' },
   MATH: { DISPLAY_MODE: 'display-mode', INLINE_MODE: 'inline-mode' }
 }

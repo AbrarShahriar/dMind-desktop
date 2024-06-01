@@ -1,10 +1,10 @@
-import { createBrowserRouter } from 'react-router-dom'
+import { createHashRouter } from 'react-router-dom'
 import App from './App'
 import Settings from './pages/Settings'
 import Extensions from './pages/Extensions'
 import Main from './pages/Main'
 
-export const router = createBrowserRouter([
+export const router = createHashRouter([
   {
     path: '/',
     element: <App />,
@@ -14,11 +14,11 @@ export const router = createBrowserRouter([
         element: <Main />
       },
       {
-        path: '/settings',
+        path: 'settings',
         element: <Settings />
       },
       {
-        path: '/extensions',
+        path: 'extensions',
         element: <Extensions />
       }
     ]

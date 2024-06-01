@@ -1,22 +1,23 @@
 import { ttable } from '../libs/ttable'
 import { MD_Types } from './node_types'
-import { ruleSets } from './rules'
+import { rules } from './rules'
 import katex from 'katex'
 
-function extensionMiddleware(
-  action: 'add' | 'remove',
-  rulesArray: typeof ruleSets,
-  extensionsList
-) {
-  let newRulesArray = rulesArray.map((ruleArray) => ruleArray.filter((rule) => !rule.disabled))
-  return action == 'add' && newRulesArray
-}
+// function extensionMiddleware(
+//   action: 'add' | 'remove',
+//   rulesArray: typeof ruleSets,
+//   extensionsList
+// ) {
+//   let newRulesArray = rulesArray.map((ruleArray) => ruleArray.filter((rule) => !rule.disabled))
+//   return action == 'add' && newRulesArray
+// }
 
 export function parseMd(md: string): string {
   let html = md
 
-  ruleSets.forEach((ruleSet) => {
-    ruleSet.forEach(({ regex, template, type }) => {
+  rules
+    .filter((rule) => rule.disabled == false)
+    .forEach(({ regex, template, type }) => {
       if (typeof template === 'function') {
         switch (type) {
           case MD_Types.LIST.UL:
@@ -31,7 +32,7 @@ export function parseMd(md: string): string {
                   listBody += `<li>${element.substring(2)}</li>`
                 })
 
-              html = html.replace(match, template(listBody) + '\n')
+              html = html.replace(match, template(listBody, '') + '\n')
             })
 
             return
@@ -48,7 +49,7 @@ export function parseMd(md: string): string {
                   listBody += `<li>${element.substring(2)}</li>`
                 })
 
-              html = html.replace(match, template(listBody))
+              html = html.replace(match, template(listBody, ''))
             })
             return
 
@@ -63,7 +64,7 @@ export function parseMd(md: string): string {
                   blockBody += `${element}`
                 })
 
-              html = html.replace(match, template(blockBody))
+              html = html.replace(match, template(blockBody, ''))
             })
             return
 
@@ -79,14 +80,46 @@ export function parseMd(md: string): string {
                 .filter((el, i) => !(i == 0 || i == match.split('\n').length - 1) && el)
                 .forEach((el) => (blockBody += `${el}\r\n`))
 
-              if (lang === 'diagram') {
-                html = html.replace(match, `<pre class="diagram mermaid">${blockBody}</pre>`)
-                return
-              } else if (lang === 'table') {
-                html = html.replace(match, ttable.toHtml(blockBody))
-                return
-              }
+              // if (lang === 'diagram') {
+              //   html = html.replace(match, `<pre class="diagram mermaid">${blockBody}</pre>`)
+              //   return
+              // } else if (lang === 'table') {
+              //   html = html.replace(match, ttable.toHtml(blockBody))
+              //   return
+              // }
               html = html.replace(match, template(lang, blockBody))
+            })
+            return
+
+          case MD_Types.BLOCK.DIAGRAM:
+            const matchedDiagramQuote = html.match(regex) || []
+            matchedDiagramQuote.forEach((match) => {
+              let diagramBody = ''
+              const metadata = match.split('\n')
+
+              metadata
+                .filter((el, i) => !(i == 0 || i == match.split('\n').length - 1) && el)
+                .forEach((el) => (diagramBody += `${el}\r\n`))
+
+              console.log(metadata, diagramBody)
+
+              html = html.replace(match, template(diagramBody, ''))
+            })
+            return
+
+          case MD_Types.BLOCK.TABLE:
+            const matchedTableQuote = html.match(regex) || []
+            matchedTableQuote.forEach((match) => {
+              let tableBody = ''
+              const metadata = match.split('\n')
+
+              metadata
+                .filter((el, i) => !(i == 0 || i == match.split('\n').length - 1) && el)
+                .forEach((el) => (tableBody += `${el}\r\n`))
+
+              console.log(metadata, tableBody)
+
+              html = html.replace(match, template(tableBody, ''))
             })
             return
 
@@ -95,7 +128,7 @@ export function parseMd(md: string): string {
             matchedCheckboxes.forEach((match) => {
               const checked = match.substring(1, 2).trim()
 
-              html = html.replace(match, template(checked && checked))
+              html = html.replace(match, template(checked && checked, ''))
             })
             return
 
@@ -120,7 +153,8 @@ export function parseMd(md: string): string {
                 template(
                   katex.renderToString(match.split('$').filter((el) => el)[0], {
                     throwOnError: false
-                  })
+                  }),
+                  ''
                 )
               )
             })
@@ -135,7 +169,8 @@ export function parseMd(md: string): string {
                   katex.renderToString(match.split('$$').filter((el) => el)[0], {
                     throwOnError: false,
                     displayMode: true
-                  })
+                  }),
+                  ''
                 )
               )
             })
@@ -147,7 +182,6 @@ export function parseMd(md: string): string {
         html = html.replace(regex, template)
       }
     })
-  })
 
   html = html.replace('', '')
 

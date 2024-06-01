@@ -14,6 +14,10 @@ export default function ExtenstionCard({
   topicIcon
 }: IExtensionCard) {
   const [checked, setChecked] = useState(extOn)
+
+  const handleExtCheckedClick = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setChecked(event.target.checked)
+  }
   return (
     <Card
       variant="soft"
@@ -44,9 +48,7 @@ export default function ExtenstionCard({
         </Link>
         <Switch
           checked={checked}
-          onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-            setChecked(event.target.checked)
-          }
+          onChange={handleExtCheckedClick}
           size="lg"
           color={checked ? 'primary' : 'neutral'}
           variant={checked ? 'solid' : 'outlined'}

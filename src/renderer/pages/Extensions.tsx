@@ -4,10 +4,8 @@ import styles from './Extensions.module.scss'
 import { IExtensionCard } from 'src/types'
 import {
   CalculateOutlined,
-  CodeOffOutlined,
   CodeOutlined,
   ShowChartOutlined,
-  TableBarOutlined,
   TableChartOutlined
 } from '@mui/icons-material'
 
@@ -38,7 +36,7 @@ const extensions: IExtensionCard[] = [
   },
   {
     title: 'TTable',
-    desc: 'A JavaScript library to convert text to beautiful tables.',
+    desc: 'A home-grown library to convert text to beautiful tables.',
     extOn: true,
     url: 'n/a',
     topic: 'table',
@@ -54,7 +52,7 @@ export default function Extensions() {
 
       <div className={styles.list}>
         {extensions.map((ext) => (
-          <ExtenstionCard {...ext} />
+          <ExtenstionCard key={ext.title} {...ext} />
         ))}
       </div>
     </div>

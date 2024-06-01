@@ -1,11 +1,21 @@
 // State Types
 import ace from 'ace-builds'
+import React from 'react'
 
 export enum EVENT_NAMES {
   HANDLE_NOTE_SAVE = 'handle_note_save',
   HANDLE_NOTE_UPDATE = 'handle_note_update',
   HANDLE_NOTE_DELETE = 'handle_note_delete',
   GET_NOTES = 'get_notes'
+}
+
+// RULE TYPES
+type TemplateFunction = ((val1: any) => any) | ((val1: any, val2: any) => any)
+export interface IRule {
+  type: string
+  regex: RegExp
+  template: string | TemplateFunction
+  disabled: boolean
 }
 
 // WINDOW Type
@@ -100,5 +110,5 @@ export interface IExtensionCard {
   extOn: boolean
   url: string
   topic: string
-  topicIcon: JSX.Element
+  topicIcon: React.ReactElement
 }
