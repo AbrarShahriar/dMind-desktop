@@ -1,23 +1,54 @@
-import { Box, Card, CardActions, CardContent, Chip, Link, Switch, Typography } from '@mui/joy'
+import {
+  Box,
+  Button,
+  Card,
+  CardActions,
+  CardContent,
+  Chip,
+  Link,
+  Switch,
+  Typography
+} from '@mui/joy'
 import { IExtensionCard } from '../../../types'
 // import styles from './ExtensionCard.module.scss'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { rules } from '../../parser/rules'
 
 const cols = 3
 
-export default function ExtenstionCard({
-  desc,
-  extOn,
-  title,
-  url,
-  topic,
-  topicIcon
-}: IExtensionCard) {
+export default function ExtenstionCard({ type, desc, extOn, title, url, topic }: IExtensionCard) {
   const [checked, setChecked] = useState(extOn)
+  const [extensions, setExtensions] = useState<IExtensionCard[]>([])
+  const [showRestartRequired, setShowRestartRequired] = useState(false)
 
-  const handleExtCheckedClick = (event: React.ChangeEvent<HTMLInputElement>) => {
+  useEffect(() => {
+    window.api.getPluginConfig().then((data) => setExtensions(data))
+  }, [])
+
+  const handleExtCheckedClick = async (event: React.ChangeEvent<HTMLInputElement>) => {
     setChecked(event.target.checked)
+
+    let updatedExtensions = Array.from(extensions)
+
+    updatedExtensions.forEach((ext) => {
+      if (ext.type == type) {
+        ext.extOn = event.target.checked
+      }
+    })
+    rules.forEach((el) => {
+      if (el.type == type) {
+        el.disabled = !event.target.checked
+      }
+    })
+
+    await window.api.udpatePluginConfig(updatedExtensions)
+    setShowRestartRequired(true)
   }
+
+  const handleRestartClick = async () => {
+    return await window.api.relaunch()
+  }
+
   return (
     <Card
       variant="soft"
@@ -35,7 +66,7 @@ export default function ExtenstionCard({
             }}
           >
             <Typography level="h3">{title}</Typography>
-            <Chip variant="solid" color="primary" size="sm" startDecorator={topicIcon}>
+            <Chip variant="solid" color="primary" size="sm">
               {topic}
             </Chip>
           </Box>
@@ -43,9 +74,17 @@ export default function ExtenstionCard({
         </CardContent>
       </CardContent>
       <CardActions>
-        <Link href={url} target="_blank" sx={{ marginRight: 'auto' }}>
+        <Link level="body-sm" href={url} target="_blank" sx={{ marginRight: 'auto' }}>
           Visit
         </Link>
+        <Typography
+          onClick={handleRestartClick}
+          color="warning"
+          level="body-sm"
+          sx={{ display: showRestartRequired ? 'block' : 'none', cursor: 'pointer' }}
+        >
+          Restart
+        </Typography>
         <Switch
           checked={checked}
           onChange={handleExtCheckedClick}

@@ -10,9 +10,12 @@ import 'highlight.js/styles/github-dark.min.css'
 export default function Preview() {
   const [processing, setProcessing] = useState(true)
   const editorData = useAppStore((state) => state.editorData)
+  const [previewData, setPreviewData] = useState('')
 
   useEffect(() => {
     const update = async () => {
+      let d = await parseMd(editorData as string)
+      setPreviewData(d)
       hljs.highlightAll()
       await mermaid.run()
     }
@@ -28,7 +31,7 @@ export default function Preview() {
     <div
       className={styles.preview}
       dangerouslySetInnerHTML={{
-        __html: parseMd(editorData as string)
+        __html: previewData
       }}
     ></div>
   )

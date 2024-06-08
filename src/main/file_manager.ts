@@ -1,16 +1,11 @@
 import * as jetpack from 'fs-jetpack'
-import { app } from 'electron'
-import path from 'path'
 import { randomUUID } from 'crypto'
 import { FsResponse, NOTE_RESPONSE_STATUS } from '../types'
-
-const DEFAULT_PATH = path.join(app.getPath('documents'), '/dMind/')
+import { DEFAULT_PATH, resolvePath } from './path'
 
 if (!jetpack.exists(DEFAULT_PATH)) {
   jetpack.dir(DEFAULT_PATH)
 }
-
-const resolvePath = (filename: string) => path.join(DEFAULT_PATH, filename)
 
 export async function createNote(noteBody: string): Promise<FsResponse> {
   console.log('creating new note')
@@ -65,7 +60,7 @@ export async function getNotes(): Promise<any[]> {
   const path = DEFAULT_PATH
   const results: any = []
 
-  const paths = (await jetpack.findAsync(path)) || []
+  const paths = (await jetpack.findAsync(path, { matching: '*.d' })) || []
 
   paths.forEach((path) => {
     const file = jetpack.read(path)

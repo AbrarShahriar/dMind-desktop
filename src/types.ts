@@ -6,7 +6,12 @@ export enum EVENT_NAMES {
   HANDLE_NOTE_SAVE = 'handle_note_save',
   HANDLE_NOTE_UPDATE = 'handle_note_update',
   HANDLE_NOTE_DELETE = 'handle_note_delete',
-  GET_NOTES = 'get_notes'
+  GET_NOTES = 'get_notes',
+
+  GET_PLUGIN_CONFIG = 'update_plugin_config',
+  UPDATE_PLUGIN_CONFIG = 'get_plugin_config',
+
+  RELAUNCH = 'relaunch'
 }
 
 // RULE TYPES
@@ -24,6 +29,11 @@ export interface InterfaceAPI {
   updateNote: ({ noteId, noteBody }: { noteId: string; noteBody: string }) => Promise<FsResponse>
   deleteNote: (noteId: string) => Promise<FsResponse>
   getNotes: () => Promise<IRetrievedNote[]>
+
+  getPluginConfig: () => Promise<IExtensionCard[]>
+  udpatePluginConfig: (updatedConfig: IExtensionCard[]) => Promise<void>
+
+  relaunch: () => Promise<void>
 }
 
 // Note Interface
@@ -39,7 +49,11 @@ export enum NOTE_RESPONSE_STATUS {
   NOTE_ADDED,
   NOTE_UPDATED,
   NOTE_DELETED,
-  NOTE_ERROR
+  NOTE_ERROR,
+
+  PLUGIN_CONFIG_UPDATED,
+
+  UNKNOWN_ERROR
 }
 
 // RESPONSE TYPE
@@ -105,10 +119,31 @@ export interface IRetrievedNote {
 // Extension UI Types
 
 export interface IExtensionCard {
+  type: string | string[]
   title: string
   desc: string
   extOn: boolean
   url: string
   topic: string
   topicIcon: React.ReactElement
+}
+
+// PARSER NODE TYPES
+export const MD_Types = {
+  HEADER: 'header',
+  TEXT_FORMATTING: {
+    INLINE_CODE: 'inline_code',
+    BOLD: 'bold',
+    ITALIC: 'italic',
+    STRIKETHROUGH: 'strikethrough',
+    HIGHLIGHT: 'highlight',
+    UNDERLINE: 'underline'
+  },
+  GRAPHICS: { LINE: 'line' },
+  MEDIA: { IMAGE: 'image', CHECKBOX: 'checkbox' },
+  LINK: 'LINK',
+  INDENTATION: { LINE_BREAK: 'linebrake', TAB: 'tab' },
+  LIST: { UL: 'list_ul', OL: 'list_ol' },
+  BLOCK: { QUOTE: 'quote', CODE: 'code', DIAGRAM: 'diagram', TABLE: 'table' },
+  MATH: { DISPLAY_MODE: 'display-mode', INLINE_MODE: 'inline-mode' }
 }

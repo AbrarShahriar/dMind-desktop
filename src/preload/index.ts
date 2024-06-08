@@ -10,7 +10,13 @@ const api: InterfaceAPI = {
     await ipcRenderer.invoke(EVENT_NAMES.HANDLE_NOTE_UPDATE, { noteId, noteBody }),
   deleteNote: async (noteId: string) =>
     await ipcRenderer.invoke(EVENT_NAMES.HANDLE_NOTE_DELETE, noteId),
-  getNotes: async () => await ipcRenderer.invoke(EVENT_NAMES.GET_NOTES)
+  getNotes: async () => await ipcRenderer.invoke(EVENT_NAMES.GET_NOTES),
+
+  getPluginConfig: async () => await ipcRenderer.invoke(EVENT_NAMES.GET_PLUGIN_CONFIG),
+  udpatePluginConfig: async (updatedConfig) =>
+    await ipcRenderer.invoke(EVENT_NAMES.UPDATE_PLUGIN_CONFIG, updatedConfig),
+
+  relaunch: async () => await ipcRenderer.invoke(EVENT_NAMES.RELAUNCH)
 }
 
 // Use `contextBridge` APIs to expose Electron APIs to

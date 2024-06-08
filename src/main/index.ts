@@ -4,6 +4,7 @@ import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
 import { EVENT_NAMES } from '../types'
 import { createNote, deleteNote, getNotes, updateNote } from './file_manager'
+import { Config } from './configHandler'
 
 function createWindow(): void {
   // Create the browser window.
@@ -42,9 +43,9 @@ function createWindow(): void {
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
-app.whenReady().then(() => {
+app.whenReady().then(async () => {
   // Set app user model id for windows
-  electronApp.setAppUserModelId('com.electron')
+  electronApp.setAppUserModelId('com.dMind')
 
   // Default open or close DevTools by F12 in development
   // and ignore CommandOrControl + R in production.
@@ -63,6 +64,22 @@ app.whenReady().then(() => {
   ipcMain.handle(EVENT_NAMES.HANDLE_NOTE_DELETE, async (_, noteId) => await deleteNote(noteId))
   ipcMain.handle(EVENT_NAMES.GET_NOTES, getNotes)
 
+  // Setup Default Configs
+  Config.PluignConfig.setupPluginConfig()
+  ipcMain.handle(EVENT_NAMES.GET_PLUGIN_CONFIG, Config.PluignConfig.getPluginConfig)
+  ipcMain.handle(EVENT_NAMES.UPDATE_PLUGIN_CONFIG, async (_, updatedConfig) =>
+    Config.PluignConfig.updatePluginConfig(updatedConfig)
+  )
+
+  // Setup Restart
+  ipcMain.handle(EVENT_NAMES.RELAUNCH, () => {
+    console.log('Restarting')
+
+    app.relaunch()
+    app.exit()
+  })
+
+  // Create Window
   createWindow()
 
   app.on('activate', function () {

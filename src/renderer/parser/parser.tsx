@@ -1,22 +1,28 @@
-import { ttable } from '../libs/ttable'
+import { IExtensionCard } from '../../types'
 import { MD_Types } from './node_types'
 import { rules } from './rules'
 import katex from 'katex'
 
-// function extensionMiddleware(
-//   action: 'add' | 'remove',
-//   rulesArray: typeof ruleSets,
-//   extensionsList
-// ) {
-//   let newRulesArray = rulesArray.map((ruleArray) => ruleArray.filter((rule) => !rule.disabled))
-//   return action == 'add' && newRulesArray
-// }
-
-export function parseMd(md: string): string {
+export async function parseMd(md: string): Promise<string> {
   let html = md
+  let pluginConfig: IExtensionCard[] = await window.api.getPluginConfig().then((data) => data)
+
+  pluginConfig.forEach((plugin) => {
+    rules.forEach((rule) => {
+      if (plugin.type == 'math') {
+        let i = rules.findIndex((r) => r.type == MD_Types.MATH.DISPLAY_MODE)
+        let j = rules.findIndex((r) => r.type == MD_Types.MATH.INLINE_MODE)
+
+        rules[i].disabled = !plugin.extOn
+        rules[j].disabled = !plugin.extOn
+      } else if (plugin.type == rule.type) {
+        rule.disabled = !plugin.extOn
+      }
+    })
+  })
 
   rules
-    .filter((rule) => rule.disabled == false)
+    .filter((rule) => !rule.disabled)
     .forEach(({ regex, template, type }) => {
       if (typeof template === 'function') {
         switch (type) {
@@ -80,13 +86,6 @@ export function parseMd(md: string): string {
                 .filter((el, i) => !(i == 0 || i == match.split('\n').length - 1) && el)
                 .forEach((el) => (blockBody += `${el}\r\n`))
 
-              // if (lang === 'diagram') {
-              //   html = html.replace(match, `<pre class="diagram mermaid">${blockBody}</pre>`)
-              //   return
-              // } else if (lang === 'table') {
-              //   html = html.replace(match, ttable.toHtml(blockBody))
-              //   return
-              // }
               html = html.replace(match, template(lang, blockBody))
             })
             return
@@ -101,8 +100,6 @@ export function parseMd(md: string): string {
                 .filter((el, i) => !(i == 0 || i == match.split('\n').length - 1) && el)
                 .forEach((el) => (diagramBody += `${el}\r\n`))
 
-              console.log(metadata, diagramBody)
-
               html = html.replace(match, template(diagramBody, ''))
             })
             return
@@ -116,8 +113,6 @@ export function parseMd(md: string): string {
               metadata
                 .filter((el, i) => !(i == 0 || i == match.split('\n').length - 1) && el)
                 .forEach((el) => (tableBody += `${el}\r\n`))
-
-              console.log(metadata, tableBody)
 
               html = html.replace(match, template(tableBody, ''))
             })
@@ -137,8 +132,6 @@ export function parseMd(md: string): string {
 
             matchedTabElements.forEach((match) => {
               const level = match.lastIndexOf('_') + 1
-
-              console.log(html)
 
               html = html.replace(match, template(level, parseMd(match.substring(level))))
             })

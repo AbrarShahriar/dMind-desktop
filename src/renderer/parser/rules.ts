@@ -58,7 +58,7 @@ export const rules: IRule[] = [
     type: MD_Types.BLOCK.DIAGRAM,
     regex: /\`\`\`diagram(\w+){0,}?(?:\n([\s\S]*?)\n)\`\`\`/gm,
     template: (diagramBody) => `<pre class="diagram mermaid">${diagramBody}</pre>`,
-    disabled: true
+    disabled: false
   },
   // TABLE
   {
