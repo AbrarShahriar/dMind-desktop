@@ -41,7 +41,7 @@
 
 # ⚙️ Installation
 
-Download the beta version of dMind from [this link](https://github.com/AbrarShahriar/dMind-desktop/releases/tag/v0.1.0-beta) or from [SourceForge](https://sourceforge.net/projects/dmind/files/latest/download)
+Download the beta version of dMind from [this link](https://github.com/AbrarShahriar/dMind-desktop/releases/tag/v0.3.0-beta) or from [SourceForge](https://sourceforge.net/projects/dmind/files/latest/download)
 
 #### ⚠️ Attention
 
