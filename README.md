@@ -57,6 +57,7 @@ dMind is currently in beta and under active development. While it offers excitin
 ### Major:
 
 - [x] Extended Markdown parser
+- [ ] Settings Page
 - [x] Diagram
   - [x] Mermaid
   - [ ] Nomnoml
