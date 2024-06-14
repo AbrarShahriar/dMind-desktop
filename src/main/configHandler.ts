@@ -1,6 +1,5 @@
-import path from 'path'
-import { FsResponse, MD_Types, NOTE_RESPONSE_STATUS } from '../types'
-import { DEFAULT_PATH, resolvePath } from './path'
+import { MD_Types, NOTE_RESPONSE_STATUS } from '../types'
+import { resolvePath } from './path'
 import jetpack from 'fs-jetpack'
 
 const builtInPluignsDefaultConfig = [
@@ -13,11 +12,19 @@ const builtInPluignsDefaultConfig = [
     topic: 'Diagram'
   },
   {
-    type: [MD_Types.MATH.DISPLAY_MODE, MD_Types.MATH.INLINE_MODE],
+    type: 'math',
     title: 'KaTeX',
     desc: 'JavaScript library for TeX math rendering.',
     extOn: true,
     url: 'https://katex.org/',
+    topic: 'Math'
+  },
+  {
+    type: MD_Types.PLOT,
+    title: 'Function-plot',
+    desc: 'A 2d function plotter powered by D3.',
+    extOn: true,
+    url: 'https://mauriciopoppe.github.io/function-plot/',
     topic: 'Math'
   },
   {

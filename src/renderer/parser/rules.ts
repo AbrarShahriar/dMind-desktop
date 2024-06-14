@@ -96,6 +96,12 @@ export const rules: IRule[] = [
     template: (katexString) => `<span>${katexString}</span>`,
     disabled: false
   },
+  {
+    type: MD_Types.PLOT,
+    regex: /(?:\@\@)(?<! )(\S(.*?))(?! )(?:\@\@)/gm,
+    template: (plotNode) => `<div class="plot">${plotNode}</div>`,
+    disabled: false
+  },
 
   // TEXT FORMATTING
 

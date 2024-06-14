@@ -69,3 +69,36 @@ td,
 tr {
   border-collapse: collapse;
 }
+
+// function-plot styles
+.plot {
+  display: grid;
+  place-items: center;
+  .function-plot {
+    .title {
+      color: white;
+    }
+    .x.origin,
+    .y.origin {
+      stroke: white;
+      opacity: 0.2;
+    }
+    .x.axis {
+      .tick {
+        line {
+          stroke: white;
+          opacity: 0.05;
+        }
+      }
+    }
+
+    .y.axis {
+      .tick {
+        line {
+          stroke: white;
+          opacity: 0.05;
+        }
+      }
+    }
+  }
+}

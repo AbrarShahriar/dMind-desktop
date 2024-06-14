@@ -14,5 +14,6 @@ export const MD_Types = {
   INDENTATION: { LINE_BREAK: 'linebrake', TAB: 'tab' },
   LIST: { UL: 'list_ul', OL: 'list_ol' },
   BLOCK: { QUOTE: 'quote', CODE: 'code', DIAGRAM: 'diagram', TABLE: 'table' },
-  MATH: { DISPLAY_MODE: 'display-mode', INLINE_MODE: 'inline-mode' }
+  MATH: { DISPLAY_MODE: 'display-mode', INLINE_MODE: 'inline-mode' },
+  PLOT: 'function-plot'
 }

@@ -48,6 +48,7 @@ export default function SideBar() {
     (state) => state.setpreviouslyCreatedNoteOpened
   )
   const setCurrentNoteSaved = useAppStore((state) => state.setCurrentNoteSaved)
+  const setIndex = useAppStore((state) => state.setTabIndex)
 
   useEffect(() => {
     window.api.getNotes().then((data) => setNotes(data))
@@ -58,15 +59,17 @@ export default function SideBar() {
     setCurrentNoteId(note.id)
     setpreviouslyCreatedNoteOpened(true)
     setCurrentNoteSaved(true)
-
+    setIndex(0)
     navigate('/')
   }
 
   const handleNewNoteClick = () => {
+    setIndex(0)
     setCurrentNoteSaved(false)
     setCurrentNoteId('')
     resetEditor()
     setpreviouslyCreatedNoteOpened(false)
+    navigate('/')
   }
 
   const handleNoteDeleteModal = (e, noteId) => {
@@ -123,11 +126,11 @@ export default function SideBar() {
                   <PostAddOutlined style={{ color: 'white' }} />
                 </IconButton>
               </Tooltip>
-              <Tooltip hide={collapsed} label="Add Collection">
+              {/* <Tooltip hide={collapsed} label="Add Collection">
                 <IconButton>
                   <CreateNewFolderOutlined style={{ color: 'white' }} />
                 </IconButton>
-              </Tooltip>
+              </Tooltip> */}
             </div>
             <Tooltip label={collapsed ? 'Open Sidebar' : 'Hide Sidebar'}>
               <IconButton

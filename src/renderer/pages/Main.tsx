@@ -27,6 +27,9 @@ export default function Main() {
   const setCurrentNoteSaved = useAppStore((state) => state.setCurrentNoteSaved)
   const updateRefreshNotes = useAppStore((state) => state.updateRefreshNotes)
 
+  const index = useAppStore((state) => state.tabIndex)
+  const setIndex = useAppStore((state) => state.setTabIndex)
+
   useEffect(() => {
     mermaid.initialize({ startOnLoad: false, theme: 'dark' })
   }, [])
@@ -65,7 +68,8 @@ export default function Main() {
         <header className={styles.topbar}>
           <div className={styles.tabs}>
             <Tabs
-              defaultValue={0}
+              value={index}
+              onChange={(event, value) => setIndex(value as number)}
               sx={{
                 width: '100%',
                 height: '100%'

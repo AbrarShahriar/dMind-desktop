@@ -6,6 +6,7 @@ interface IStore {
   refreshNotes: number
   currentNoteId: string
   previouslyCreatedNoteOpened: boolean
+  tabIndex: number
 }
 
 interface IActions extends IStore {
@@ -15,6 +16,7 @@ interface IActions extends IStore {
   setpreviouslyCreatedNoteOpened: (val: boolean) => void
   setCurrentNoteSaved: (val: boolean) => void
   updateRefreshNotes: () => void
+  setTabIndex: (i: number) => void
 }
 
 // INITIAL STATE
@@ -23,7 +25,8 @@ const initialState: IStore = {
   refreshNotes: 0,
   currentNoteSaved: false,
   currentNoteId: '',
-  previouslyCreatedNoteOpened: false
+  previouslyCreatedNoteOpened: false,
+  tabIndex: 0
 }
 
 // ACTIONS
@@ -34,7 +37,8 @@ const actions = (set: (state: IActions | Partial<IActions>) => void) => ({
   setCurrentNoteSaved: (val) => set({ currentNoteSaved: val }),
   setpreviouslyCreatedNoteOpened: (val) => set({ previouslyCreatedNoteOpened: val }),
   updateRefreshNotes: () =>
-    set(((state) => ({ refreshNotes: state.refreshNotes + 1 })) as IActions | Partial<IActions>)
+    set(((state) => ({ refreshNotes: state.refreshNotes + 1 })) as IActions | Partial<IActions>),
+  setTabIndex: (index) => set({ tabIndex: index })
 })
 
 // STORE

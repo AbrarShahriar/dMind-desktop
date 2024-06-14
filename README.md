@@ -72,7 +72,7 @@ dMind is currently in beta and under active development. While it offers excitin
   - [x] CSV-like Table writing
   - [ ] Excel-like functions
   - [ ] Custom Table Styles
-- [ ] Plugin page to enable\disable built-in plugins
+- [x] Plugin page to enable\disable built-in plugins
 
 ### Minor
 
@@ -80,7 +80,7 @@ dMind is currently in beta and under active development. While it offers excitin
 - [ ] In-App note links
 - [ ] Menu Bar to insert blocks quickly
 - [ ] Charts
-- [ ] Equation Plotter: Desmos
+- [x] Equation Plotter: Like Desmos
 - [ ] Callout
 - [ ] Share notes as websites: 7 days retention by default, purchase for 30 day / more retention
 - [ ] Chat/Dialogue UI

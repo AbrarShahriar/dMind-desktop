@@ -1,5 +1,6 @@
+import functionPlot from 'function-plot'
 import { IExtensionCard } from '../../types'
-import { MD_Types } from './node_types'
+import { MD_Types } from '../../types'
 import { rules } from './rules'
 import katex from 'katex'
 
@@ -166,6 +167,22 @@ export async function parseMd(md: string): Promise<string> {
                   ''
                 )
               )
+            })
+
+          case MD_Types.PLOT:
+            const matchedPlot = html.match(regex) || []
+
+            matchedPlot.forEach((match) => {
+              let node = document.createElement('div')
+
+              // let plot = functionPlot({ target: node, data: [{ fn: match.split('@@')[1] }] })
+              functionPlot({
+                target: node,
+                grid: true,
+                data: [{ fn: match.split('@@')[1], color: 'white' }]
+              })
+
+              html = html.replace(match, template(node.innerHTML, ''))
             })
 
           default:
