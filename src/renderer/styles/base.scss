@@ -41,33 +41,23 @@ code.inline_code {
 }
 
 .ttable {
+  border-collapse: collapse;
   width: 100%;
   font-size: 16px;
   border: 1px solid white;
-  text-align: center;
-}
+  text-align: left;
 
-.ttable td,
-.ttable th {
-  padding: 10px;
-  border: 1px solid white;
-}
+  td,
+  th,
+  tr {
+    padding: 15px 10px;
+    border: 1px solid white;
+  }
 
-.ttable tr {
-  border: 1px solid white;
-}
-
-.ttable tr:nth-child(odd) {
-  // background-color: $sidebar-background;
-}
-
-.ttable tr:nth-child(even) {
-  // background-color: var(---background);
-}
-.ttable,
-td,
-tr {
-  border-collapse: collapse;
+  th {
+    font-weight: 900;
+    background-color: $border-color;
+  }
 }
 
 // function-plot styles
