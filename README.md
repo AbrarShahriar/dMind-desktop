@@ -32,17 +32,12 @@
 
 # ⚡️ Demo
 
-See for yourself!
-
-<p align="center"><img width="100%" src="https://raw.githubusercontent.com/AbrarShahriar/dMind-desktop/main/git_assets/intro.gif"></p>
-
-# 👀 Examples
-
 <p align="center"><img src="https://raw.githubusercontent.com/AbrarShahriar/dMind-desktop/main/git_assets/text%20formatting.png"></p>
 <p align="center"><img src="https://raw.githubusercontent.com/AbrarShahriar/dMind-desktop/main/git_assets/code%20blocks.png"></p>
 <p align="center"><img src="https://raw.githubusercontent.com/AbrarShahriar/dMind-desktop/main/git_assets/tables.png"></p>
-<p align="center"><img width="100%" src="https://raw.githubusercontent.com/AbrarShahriar/dMind-desktop/main/git_assets/diagrams.gif"></p>
-<p align="center"><img width="100%" src="https://raw.githubusercontent.com/AbrarShahriar/dMind-desktop/main/git_assets/math.gif"></p>
+<p align="center"><img width="100%" src="https://raw.githubusercontent.com/AbrarShahriar/dMind-desktop/main/git_assets/diagrams.png"></p>
+<p align="center"><img width="100%" src="https://raw.githubusercontent.com/AbrarShahriar/dMind-desktop/main/git_assets/math.png"></p>
+<p align="center"><img width="100%" src="https://raw.githubusercontent.com/AbrarShahriar/dMind-desktop/main/git_assets/graph.png"></p>
 
 # ⚙️ Installation
 
@@ -52,7 +47,7 @@ Download the beta version of dMind from [this link](https://github.com/AbrarShah
 
 dMind is currently in beta and under active development. While it offers exciting new features, please note that it may have critical bugs. We recommend creating issue requests immediately after encountering any bug. Always check the official documentation and release notes for update. Happy learning! 🚀
 
-# 🖥️ Feature Board
+# ✨ Future Features
 
 ### Major:
 
@@ -90,3 +85,16 @@ dMind is currently in beta and under active development. While it offers excitin
 - [ ] Directory Structure
 - [ ] Draw arrows on your notes: [Like this obsidian plugin](https://github.com/artisticat1/arrows)
 - [ ] Progress Bars
+
+# 🤝 Credits
+
+Like most software, `dmind-desktop` is build upon third-party code/libraries which was/were written by others.
+
+This software uses the following open source packages:
+
+- [Ace](https://ace.c9.io/)
+- [fs-jetpack](https://github.com/szwacz/fs-jetpack)
+- [function-plot](https://mauriciopoppe.github.io/function-plot/)
+- [Mermaid](https://mermaid.js.org/)
+- [KaTeX](https://katex.org/)
+- [highlight.js](https://highlightjs.org/)
