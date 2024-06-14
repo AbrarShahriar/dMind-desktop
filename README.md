@@ -69,7 +69,7 @@ dMind is currently in beta and under active development. While it offers excitin
 - [x] LaTeX renderer
 - [ ] Theme System
 - [ ] Folders
-- [ ] Download other's notes (upload `.d` files to any file uploading platform. press the import button, paste the link and download the note)
+- [x] Download other's notes (upload `.d` files to any file uploading platform. press the import button, paste the link and download the note)
 - [x] Table
   - [x] CSV-like Table writing
   - [ ] Excel-like functions
