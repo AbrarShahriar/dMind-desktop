@@ -98,3 +98,4 @@ This software uses the following open source packages:
 - [Mermaid](https://mermaid.js.org/)
 - [KaTeX](https://katex.org/)
 - [highlight.js](https://highlightjs.org/)
+- ... [and others](https://github.com/AbrarShahriar/dMind-desktop/blob/main/package.json#L27)
