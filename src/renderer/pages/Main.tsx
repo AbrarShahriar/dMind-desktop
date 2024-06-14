@@ -1,10 +1,10 @@
 import { IconButton, Tab, TabList, TabPanel, Tabs } from '@mui/joy'
 import styles from './Main.module.scss'
-import { ModeEdit, AutoAwesome, Upload, Done, Save, CancelOutlined } from '@mui/icons-material'
+import { ModeEdit, AutoAwesome, Done, Save, CancelOutlined } from '@mui/icons-material'
 import { useAppStore } from '../store'
 import mermaid from 'mermaid'
 import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+// import { useNavigate } from 'react-router-dom'
 import { FsResponse, NOTE_RESPONSE_STATUS } from '../../types'
 import Snackbar from '../components/utils/Snackbar'
 import Tooltip from '../components/utils/Tooltip'
@@ -15,7 +15,7 @@ const editorBackground = '#090f13'
 const topbarBackground = '#09191f'
 
 export default function Main() {
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
 
   const [editorEmptySnackbarOpen, setEditorEmptySnackbarOpen] = useState(false)
   const [saveSuccessSnackbarOpen, setSaveSuccessSnackbarOpen] = useState(false)
@@ -69,7 +69,7 @@ export default function Main() {
           <div className={styles.tabs}>
             <Tabs
               value={index}
-              onChange={(event, value) => setIndex(value as number)}
+              onChange={(_, value) => setIndex(value as number)}
               sx={{
                 width: '100%',
                 height: '100%'
@@ -85,7 +85,7 @@ export default function Main() {
                   <AutoAwesome style={{ color: 'white' }} /> Preview
                 </Tab>
                 <div className={styles.actions}>
-                  <Tooltip label="Export">
+                  {/* <Tooltip label="Export">
                     <IconButton
                       variant="plain"
                       color="neutral"
@@ -94,7 +94,7 @@ export default function Main() {
                     >
                       <Upload style={{ color: 'white' }} />
                     </IconButton>
-                  </Tooltip>
+                  </Tooltip> */}
                   <Tooltip label="Save">
                     <IconButton
                       disabled={currentNoteSaved}

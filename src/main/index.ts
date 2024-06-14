@@ -5,6 +5,7 @@ import icon from '../../resources/icon.png?asset'
 import { EVENT_NAMES } from '../types'
 import { createNote, deleteNote, getNotes, updateNote } from './file_manager'
 import { Config } from './configHandler'
+import { downloadRemoteNote } from './remoteNoteHandler'
 
 function createWindow(): void {
   // Create the browser window.
@@ -16,13 +17,13 @@ function createWindow(): void {
     ...(process.platform === 'linux' ? { icon } : {}),
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'),
-      sandbox: false
-      // devTools: !(app.isPackaged || process.env?.NODE_ENV === 'development')
+      sandbox: false,
+      devTools: !(app.isPackaged || process.env?.NODE_ENV === 'development')
     }
   })
 
   mainWindow.on('ready-to-show', () => {
-    // mainWindow.maximize()
+    mainWindow.maximize()
     mainWindow.show()
   })
 
@@ -38,6 +39,12 @@ function createWindow(): void {
   } else {
     mainWindow.loadFile(join(__dirname, '../renderer/index.html'))
   }
+
+  // Download Note
+  ipcMain.handle(
+    EVENT_NAMES.DOWNLOAD_NOTE,
+    async (_, url) => await downloadRemoteNote(url, mainWindow)
+  )
 }
 
 // This method will be called when Electron has finished

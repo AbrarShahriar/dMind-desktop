@@ -1,14 +1,4 @@
-import {
-  Box,
-  Button,
-  Card,
-  CardActions,
-  CardContent,
-  Chip,
-  Link,
-  Switch,
-  Typography
-} from '@mui/joy'
+import { Box, Card, CardActions, CardContent, Chip, Link, Switch, Typography } from '@mui/joy'
 import { IExtensionCard } from '../../../types'
 // import styles from './ExtensionCard.module.scss'
 import { useEffect, useState } from 'react'

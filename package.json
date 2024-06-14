@@ -33,6 +33,7 @@
     "@mui/icons-material": "^5.15.17",
     "@mui/joy": "^5.0.0-beta.36",
     "ace-builds": "^1.33.2",
+    "electron-dl": "^3.5.2",
     "fs-jetpack": "^5.1.0",
     "function-plot": "^1.25.0",
     "highlight.js": "^11.9.0",

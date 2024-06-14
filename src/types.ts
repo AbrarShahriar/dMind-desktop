@@ -11,7 +11,8 @@ export enum EVENT_NAMES {
   GET_PLUGIN_CONFIG = 'update_plugin_config',
   UPDATE_PLUGIN_CONFIG = 'get_plugin_config',
 
-  RELAUNCH = 'relaunch'
+  RELAUNCH = 'relaunch',
+  DOWNLOAD_NOTE = 'download_note'
 }
 
 // RULE TYPES
@@ -34,6 +35,11 @@ export interface InterfaceAPI {
   udpatePluginConfig: (updatedConfig: IExtensionCard[]) => Promise<void>
 
   relaunch: () => Promise<void>
+
+  downloadNote: (url: string) => Promise<void>
+
+  onDownloadNoteProgress: (callback: (args: any) => void) => void
+  onDownloadNoteCompleted: (callback: (args: any) => void) => void
 }
 
 // Note Interface

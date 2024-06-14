@@ -16,7 +16,12 @@ const api: InterfaceAPI = {
   udpatePluginConfig: async (updatedConfig) =>
     await ipcRenderer.invoke(EVENT_NAMES.UPDATE_PLUGIN_CONFIG, updatedConfig),
 
-  relaunch: async () => await ipcRenderer.invoke(EVENT_NAMES.RELAUNCH)
+  relaunch: async () => await ipcRenderer.invoke(EVENT_NAMES.RELAUNCH),
+  downloadNote: async (url) => await ipcRenderer.invoke(EVENT_NAMES.DOWNLOAD_NOTE, url),
+  onDownloadNoteProgress: (callback) =>
+    ipcRenderer.on('note-download:progress', (_, args) => callback(args)),
+  onDownloadNoteCompleted: (callback) =>
+    ipcRenderer.on('note-download:complete', (_, args) => callback(args))
 }
 
 // Use `contextBridge` APIs to expose Electron APIs to

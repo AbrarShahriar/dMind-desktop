@@ -7,16 +7,21 @@ import {
   DialogContent,
   DialogTitle,
   Divider,
+  FormControl,
+  FormLabel,
   IconButton,
+  Input,
   Modal,
-  ModalDialog
+  ModalDialog,
+  Stack
 } from '@mui/joy'
 import {
   ArticleOutlined,
+  CancelOutlined,
   ClearOutlined,
-  CreateNewFolderOutlined,
+  CloudDownloadOutlined,
+  FileDownloadOutlined,
   PostAddOutlined,
-  Settings,
   SwitchRight,
   WarningRounded,
   WidgetsOutlined
@@ -25,6 +30,7 @@ import Tooltip from '../utils/Tooltip'
 import { IRetrievedNote, NOTE_RESPONSE_STATUS } from '../../../types'
 import { useAppStore } from '../../store'
 import { useNavigate } from 'react-router-dom'
+import Snackbar from '../utils/Snackbar'
 
 const sideBarBgColor = '#0c2f39'
 const mdCharacters = ['#', '*', '_', '$', '%', '^', '-', '~']
@@ -34,6 +40,7 @@ export default function SideBar() {
 
   const [deleteCandidateId, setDeleteCandidateId] = useState('')
   const [noteDeleteModalOpen, setNoteDeleteModalOpen] = useState(false)
+  const [importNoteModalOpen, setImportNoteModalOpen] = useState(false)
   const [collapsed, setCollapsed] = useState(false)
   const [notes, setNotes] = useState<IRetrievedNote[]>([])
 
@@ -49,6 +56,11 @@ export default function SideBar() {
   )
   const setCurrentNoteSaved = useAppStore((state) => state.setCurrentNoteSaved)
   const setIndex = useAppStore((state) => state.setTabIndex)
+
+  const [noteLinkText, setNoteLinkText] = useState('')
+  const [noteDownloadLoading, setNoteDownloadLoading] = useState(false)
+
+  const [noteDownloadedSnackbarOpen, setNoteDownloadedSnackbarOpen] = useState(false)
 
   useEffect(() => {
     window.api.getNotes().then((data) => setNotes(data))
@@ -79,6 +91,10 @@ export default function SideBar() {
     setDeleteCandidateId(noteId)
   }
 
+  const handleImportNote = () => {
+    setImportNoteModalOpen(true)
+  }
+
   const confirmDeleteNote = async () => {
     const res = await window.api.deleteNote(deleteCandidateId)
 
@@ -92,6 +108,24 @@ export default function SideBar() {
 
     return setNoteDeleteModalOpen(false)
   }
+
+  const confirmImportNote = async () => {
+    setNoteDownloadLoading(true)
+
+    await window.api.downloadNote(noteLinkText)
+  }
+
+  useEffect(() => {
+    window.api.onDownloadNoteProgress(() => setNoteDownloadLoading(true))
+    window.api.onDownloadNoteCompleted(() => {
+      setNoteDownloadedSnackbarOpen(true)
+      setNoteDownloadLoading(false)
+      setImportNoteModalOpen(false)
+      setNoteLinkText('')
+
+      window.api.getNotes().then((data) => setNotes(data))
+    })
+  }, [])
 
   return (
     <>
@@ -131,6 +165,11 @@ export default function SideBar() {
                   <CreateNewFolderOutlined style={{ color: 'white' }} />
                 </IconButton>
               </Tooltip> */}
+              <Tooltip hide={collapsed} label="Import Note">
+                <IconButton onClick={handleImportNote}>
+                  <CloudDownloadOutlined style={{ color: 'white' }} />
+                </IconButton>
+              </Tooltip>
             </div>
             <Tooltip label={collapsed ? 'Open Sidebar' : 'Hide Sidebar'}>
               <IconButton
@@ -145,6 +184,7 @@ export default function SideBar() {
 
           <SubMenu
             label="Notes"
+            style={{ fontWeight: 600 }}
             icon={
               <Tooltip label="Notes" position="right">
                 <ArticleOutlined />
@@ -153,6 +193,7 @@ export default function SideBar() {
           >
             {notes.map((note) => (
               <MenuItem
+                style={{ fontSize: 15 }}
                 active={currentNoteId === note.id}
                 key={note.id}
                 onClick={() => handleNoteClick(note)}
@@ -169,6 +210,7 @@ export default function SideBar() {
             ))}
           </SubMenu>
           <MenuItem
+            style={{ fontWeight: 600 }}
             icon={
               <Tooltip label="Extensions" position="right">
                 <WidgetsOutlined />
@@ -178,7 +220,8 @@ export default function SideBar() {
           >
             Extensions
           </MenuItem>
-          <MenuItem
+          {/* <MenuItem
+            style={{ fontWeight: 600 }}
             icon={
               <Tooltip label="Settings" position="right">
                 <Settings />
@@ -187,10 +230,10 @@ export default function SideBar() {
             onClick={() => navigate('settings')}
           >
             Settings
-          </MenuItem>
+          </MenuItem> */}
         </Menu>
       </Sidebar>
-
+      {/* NOTE DELETE */}
       <Modal open={noteDeleteModalOpen} onClose={() => setNoteDeleteModalOpen(false)}>
         <ModalDialog variant="outlined" role="alertdialog">
           <DialogTitle>
@@ -209,6 +252,52 @@ export default function SideBar() {
           </DialogActions>
         </ModalDialog>
       </Modal>
+      {/* IMPORT NOTE */}
+      <Modal open={importNoteModalOpen} onClose={() => setImportNoteModalOpen(false)}>
+        <ModalDialog variant="outlined" role="alertdialog">
+          <DialogTitle>
+            <FileDownloadOutlined />
+            Import Note
+          </DialogTitle>
+          <Divider />
+          <DialogContent>Paste the remote note link to import.</DialogContent>
+
+          <Stack spacing={2}>
+            <FormControl>
+              <FormLabel>Note Link:</FormLabel>
+              <Input
+                autoFocus
+                required
+                value={noteLinkText}
+                onChange={(e) => setNoteLinkText(e.currentTarget.value)}
+              />
+            </FormControl>
+          </Stack>
+          <DialogActions>
+            <Button
+              loading={noteDownloadLoading}
+              variant="solid"
+              color="primary"
+              onClick={() => confirmImportNote()}
+            >
+              Import
+            </Button>
+            <Button variant="plain" color="neutral" onClick={() => setImportNoteModalOpen(false)}>
+              Cancel
+            </Button>
+          </DialogActions>
+        </ModalDialog>
+      </Modal>
+
+      {/* NOTE DOWNLOADES */}
+      <Snackbar
+        color="success"
+        open={noteDownloadedSnackbarOpen}
+        setOpen={() => setNoteDownloadedSnackbarOpen(false)}
+        icon={<CancelOutlined />}
+        showCloseButton
+        title="Note Imported!!"
+      />
     </>
   )
 }
